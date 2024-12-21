@@ -8,7 +8,7 @@
 ## Rust Rover IDE
 
 - We began with downloading `Rust Rover` IDE but that doesn't seem to install Rust directly
-- We had to setup manual proxy for TI laptop and do the activation while on VPN
+- We had to set up manual proxy for TI laptop and do the activation while on VPN
 - We can set the `Settings > Keymap` to `VSCode`
 - So we will begin with setup following https://www.rust-lang.org/learn/get-started
 
