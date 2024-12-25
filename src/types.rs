@@ -1,6 +1,6 @@
 /// https://doc.rust-lang.org/rust-by-example/primitives.html
 /// public function to use in other modules
-pub fn demo() {
+pub fn basic_type_demo() {
     // signed integers: i8,i16,i32 (default),i64,i128
     let a: i32 = 5;
     println!("i32 = {}", a);
@@ -33,7 +33,7 @@ pub fn demo() {
     println!("shadowed i32 from char = {}", d);
 
     // arrays (type = [Type; Size]) and used as array[index]
-    let my_arr: [i32; 5] = [1,2,3,4,5];
+    let my_arr: [i32; 6] = [1,2,3,4,5,6];
     println!("array element print = {}", my_arr[0]);
 
     // tuple can hold values of different types and used as tuple.index
@@ -54,4 +54,68 @@ pub fn demo() {
 
     // all elements of an array can be initialized to same value as [value;length]
     println!("all vals same = {:?}", [0;5]);
+
+    // slices contain the pointer to data and length of slice and has the signature &[T] where T is type of array
+    // the [a..b] notation specifies including a and excluding b
+    let slice: &[i32] = &my_arr[2..4];
+    println!("slice = {:?}", slice);
+    println!("slice length = {}", slice.len());
+
+    // array.get(index) returns an `Option` that can be dealt with `match Some None`
+    for i in 0..10 {
+        match my_arr.get(i) {
+            Some(x) => print!("item = {} at index = {},", x, i),
+            None => print!("no items at index = {},", i)
+        }
+    }
+}
+
+/// https://doc.rust-lang.org/rust-by-example/custom_types.html
+
+/*
+ * Custom types can be made with either `enum` or `struct`
+ * Constants can be created using `const` and `static`
+ */
+
+// classic C structs (we need to use String if struct should own the value itself instead of &str)
+#[derive(Debug)]
+struct PersonStruct {
+    name: String,
+    age: u8
+}
+
+// A tuple struct
+#[derive(Debug)]
+struct TupleStruct (String, u8);
+
+// A unit struct (useful for generics)
+#[derive(Debug)]
+struct Unit;
+
+pub fn custom_type_demo() {
+    // PersonStruct
+    let name: String = String::from("Edward");
+    let age: u8 = 32;
+    let person = PersonStruct { name, age };
+    println!("personStruct name = {}, age = {}", person.name, person.age);
+    println!("personStruct = {:?}", person);
+
+    // TupleStruct
+    let tuple_struct = TupleStruct(String::from("Edward"), 32u8);
+    println!("tupleStruct name = {}, age = {}", tuple_struct.0, tuple_struct.1);
+    println!("tupleStruct = {:?}", tuple_struct);
+
+    // UnitStruct
+    let _unit = Unit;
+    println!("unit = {:?}", _unit);
+
+    // Enums
+
+    // Constants (these can be global as well)
+    const CONSTANT_VAL: i32 = 5;
+    // CONSTANT_VAL = 12; // throws error
+    static STATIC_CONSTANT_VAL: i32 = 10;
+    // STATIC_CONSTANT_VAL = 12; // throws error
+
+    // Nested structures
 }
