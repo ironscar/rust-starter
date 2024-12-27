@@ -10,5 +10,9 @@ fn main() {
 
     // functions from the type module
     // types::basic_type_demo();
-    types::custom_type_demo();
+    // types::custom_structs_demo();
+    // types::custom_enum_demo();
+    types::linked_list_demo();
+
+    // continue from https://doc.rust-lang.org/rust-by-example/variable_bindings.html
 }

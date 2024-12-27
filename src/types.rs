@@ -73,9 +73,17 @@ pub fn basic_type_demo() {
 /// https://doc.rust-lang.org/rust-by-example/custom_types.html
 
 /*
+ * ---------------------------------------------------------------------------------
  * Custom types can be made with either `enum` or `struct`
  * Constants can be created using `const` and `static`
  */
+
+// Constants (these can be global as well)
+// Specifying underscore before variable hides compiler warnings if variable is unused
+const _CONSTANT_VAL: i32 = 5;
+// CONSTANT_VAL = 12; // throws error
+static _STATIC_CONSTANT_VAL: i32 = 10;
+// STATIC_CONSTANT_VAL = 12; // throws error
 
 // classic C structs (we need to use String if struct should own the value itself instead of &str)
 #[derive(Debug)]
@@ -92,7 +100,20 @@ struct TupleStruct (String, u8);
 #[derive(Debug)]
 struct Unit;
 
-pub fn custom_type_demo() {
+// Nested structs
+#[derive(Debug)]
+struct Point {
+    x: i32,
+    y: i32
+}
+
+#[derive(Debug)]
+struct Rectangle {
+    top_left_corner: Point,
+    bottom_right_corner: Point
+}
+
+pub fn custom_structs_demo() {
     // PersonStruct
     let name: String = String::from("Edward");
     let age: u8 = 32;
@@ -109,13 +130,101 @@ pub fn custom_type_demo() {
     let _unit = Unit;
     println!("unit = {:?}", _unit);
 
-    // Enums
+    // Nested structures usage
+    let rect = Rectangle {top_left_corner: Point {x: 0, y: 20}, bottom_right_corner: Point {x: 10, y: 0}};
+    let width: u32 = (rect.bottom_right_corner.x - rect.top_left_corner.x) as u32;
+    let height: u32 = (rect.top_left_corner.y - rect.bottom_right_corner.y) as u32;
+    let area: u32 = width * height;
+    println!("area is {}", area);
+}
 
-    // Constants (these can be global as well)
-    const CONSTANT_VAL: i32 = 5;
-    // CONSTANT_VAL = 12; // throws error
-    static STATIC_CONSTANT_VAL: i32 = 10;
-    // STATIC_CONSTANT_VAL = 12; // throws error
+/*
+ * ---------------------------------------------------------------------------------
+ * This section covers enums in more detail
+ */
 
-    // Nested structures
+// Enum with implicit discriminator (PageLoad = 0, KeyPress = 1, ...)
+enum WebEvent {
+    PageLoad, // no property
+    KeyPress(char), // single property
+    Paste(String), // single property
+    Click(i64,i64), // multiple properties
+    NamedClick { x: i64,y: i64 } // named destructuring
+}
+
+// Enum with explicit discriminator
+enum Color {
+    Red = 0xff0000,
+    Green = 0x00ff00,
+    Blue = 0x0000ff
+}
+
+// Type for Enum
+type Wev = WebEvent;
+
+fn print_event_sign(event: WebEvent) {
+    match event {
+        Wev::PageLoad => println!("page load"),
+        Wev::KeyPress(c) => println!("pressed '{}'", c),
+        Wev::Paste(s) => println!("pasted '{}'", s),
+        Wev::Click(x,y) => println!("clicked ({}, {})", x, y),
+        Wev::NamedClick { x,y} => println!("clicked ({}, {})", x, y)
+    }
+}
+
+pub fn custom_enum_demo() {
+    // To use the enum types directly (we can use * here to specify all)
+    use crate::types::WebEvent::{Click, KeyPress, NamedClick, PageLoad, Paste};
+
+    // Enums & types
+    print_event_sign(PageLoad);
+    print_event_sign(KeyPress('s'));
+    print_event_sign(Click(20,20));
+    print_event_sign(NamedClick { x: 20, y: 20 });
+    print_event_sign(Paste(String::from("Apple")));
+
+    // Explicit enum casting (below doesn't seem to work with WebEvent enum)
+    println!("Explicit enum: {}", Color::Green as i32);
+}
+
+/*
+ * ----------------------------------------------------------------------------------
+ * Linked List implementation by enum
+ */
+enum List {
+    Node {val: i32, next: Box<List>},
+    Tail
+}
+
+// We can attach methods to enum using `impl` as below
+impl List {
+    fn new() -> List {
+        List::Tail
+    }
+    fn prepend(self, value: i32) -> List {
+        List::Node {val: value, next: Box::new(self) }
+    }
+    fn len(&self) -> u32 {
+        // self has Type &List and *self has type List
+        match *self {
+            List::Node {val: _, ref next} => 1 + next.len(), // other node case
+            List::Tail => 0 // base tail case
+        }
+    }
+    fn stringify(&self) -> String {
+        match *self {
+            List::Node {val, ref next} => format!("{} -> {}", val, next.stringify()),
+            List::Tail => String::from("END")
+        }
+    }
+
+}
+
+pub fn linked_list_demo() {
+    let mut list = List::new();
+    list = list.prepend(1);
+    list = list.prepend(2);
+    list = list.prepend(3);
+    println!("linked list has length: {}", list.len());
+    println!("linked list is {}", list.stringify());
 }
