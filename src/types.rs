@@ -115,9 +115,7 @@ struct Rectangle {
 
 pub fn custom_structs_demo() {
     // PersonStruct
-    let name: String = String::from("Edward");
-    let age: u8 = 32;
-    let person = PersonStruct { name, age };
+    let person = PersonStruct { name: String::from("Edward"), age: 8 };
     println!("personStruct name = {}, age = {}", person.name, person.age);
     println!("personStruct = {:?}", person);
 
@@ -192,11 +190,11 @@ pub fn custom_enum_demo() {
  * Linked List implementation by enum
  */
 enum List {
-    Node {val: i32, next: Box<List>},
+    Node {val: i32, next: Box<List>}, // Box is a smart pointer
     Tail
 }
 
-// We can attach methods to enum using `impl` as below
+// We can attach methods to enum (and structs) using `impl` as below
 impl List {
     fn new() -> List {
         List::Tail
