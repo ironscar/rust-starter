@@ -21,9 +21,9 @@
 - We need to get off VPN for the downloads it does
 - Then we can restart the IDE
 - We can run `rustup update` to get the latest version of rust
-- Current version is `1.83.0`
+- Current version is `1.83.0` but you can check with `rustc --version`
 - This also installs `cargo` which is Rust's package manager
-- You can get its version by running `cargo --version`
+- You can get its version by running `cargo --version` which is same as above for now
 
 ---
 
