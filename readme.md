@@ -96,4 +96,4 @@
 
 ---
 
-Next, we will continue with https://doc.rust-lang.org/rust-by-example/
+Next, we will continue with https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html

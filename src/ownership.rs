@@ -2,7 +2,7 @@ pub fn ownership_demo() {
     println!("ownership demo begins...");
 
     let mut s1 = String::from("hello");
-    let len_method = 2;
+    let len_method = 3;
 
     // using values with ownership constraints
     if (len_method == 1) {

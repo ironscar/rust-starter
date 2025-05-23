@@ -18,5 +18,3 @@ fn main() {
     // functions from the ownership module
     ownership::ownership_demo();
 }
-
-// continue from https://doc.rust-lang.org/rust-by-example/variable_bindings.html
