@@ -2,12 +2,16 @@
 mod printers;
 mod types;
 mod ownership;
+mod guessing_game;
 
 /// Library docs for next item: The main function starts everything in Rust
 fn main() {
     // functions from the print module
     // printers::basic_demo();
     // printers::complex_demo();
+
+    // functions from the guessing game tutorial
+    guessing_game::do_guess();
 
     // functions from the type module
     // types::basic_type_demo();
@@ -16,5 +20,5 @@ fn main() {
     // types::linked_list_demo();
 
     // functions from the ownership module
-    ownership::ownership_demo();
+    // ownership::ownership_demo();
 }

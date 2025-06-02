@@ -46,6 +46,12 @@
 - Then `cargo build` will install the dependency
 - We write the code given in example (for now let's not worry what it means) and run `cargo run`
 - The program successfully uses the dependency to give output
+- To know the documentation of a particular dependency, we can run `cargo doc --open`
+  - this generates the docs and opens in local browser
+- There is a concept of lock file called `Cargo.lock` here as well
+  - this will lock the dependency versions to whatever is specified in the lock file unless updated
+  - `cargo update` can be run to update the lock file to latest versions
+  - this helps in dependency management to exact versions lest there are breaking changes
 
 ---
 
@@ -92,8 +98,6 @@
   - this is often called dangling pointer and Rust doesn't allow it
   - basically, if the function owns a value, return it by value instead of reference
 
-* Try doing the linked list implementation again with this in mind [TODO]
-
 ---
 
-Next, we will continue with https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html
+Next, we will continue with https://doc.rust-lang.org/book/ch03-00-common-programming-concepts.html
