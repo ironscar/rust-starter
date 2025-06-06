@@ -35,10 +35,17 @@ pub fn basic_type_demo() {
     // arrays (type = [Type; Size]) and used as array[index]
     let my_arr: [i32; 6] = [1,2,3,4,5,6];
     println!("array element print = {}", my_arr[0]);
+    // we can also initialize arrays to contain same element on every index
+    let my_arr2 = [4;3];
+    println!("same elements array print = {:?}", my_arr2);
 
     // tuple can hold values of different types and used as tuple.index
     let my_tuple: (u32, f32, char, bool, [i32;2]) = (5, 4.0, 'a', false, [1,2]);
     println!("tuple print = {}", my_tuple.2);
+    // tuple can be deconstructed like so
+    let (v, w, x, y, z) = my_tuple;
+    // we can also print values directly inside placeholder like this
+    println!("tuple deconstruct print = {w}");
 
     // immutable string (the & is something to do with pointers and we will see later)
     let my_str: &str = "hello world";
