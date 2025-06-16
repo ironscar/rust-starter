@@ -37,4 +37,48 @@ pub fn basic_demo() {
     println!("loop_result = {loop_result}");
 
     // Iterative constructs with while
+    let arr: [u8; 5] = [1,2,3,4,5];
+    let mut counter2: usize = arr.len();
+    while counter2 != 0 {
+        counter2 -= 1;
+        println!("Looping with while: {}", arr[counter2]);
+    }
+
+    // Iterative constructs with for
+    let arr2: [u8; 5] = [2,3,4,5,6];
+    for element in arr2 {
+        println!("Looping with for: {element}");
+    }
+}
+
+pub fn convert_temp(input_temp: i16, temp_target: String) -> i16 {
+    match temp_target.as_str() {
+        "F" => (9/5)*input_temp + 32,
+        "C" => (input_temp - 32)*(5/9),
+        _ => panic!("Invalid temp type")
+    }
+}
+
+pub fn fibonacci(n: u8) {
+    let mut counter: u8 = 0;
+    let mut prev1: u16 = 0;
+    let mut prev2: u16 = 0;
+    let mut sum: u16 = 0;
+    while counter != n {
+        if counter == 0 {
+            counter += 1;
+            println!("Fibonacci {} = {}", counter, sum);
+            continue;
+        } else if counter == 1 {
+            sum += 1;
+            counter += 1;
+            println!("Fibonacci {} = {}", counter, sum);
+            continue;
+        }
+        prev1 = prev2;
+        prev2 = sum;
+        sum = prev1 + prev2;
+        counter += 1;
+        println!("Fibonacci {} = {}", counter, sum);
+    }
 }

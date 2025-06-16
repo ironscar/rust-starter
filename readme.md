@@ -100,4 +100,4 @@
 
 ---
 
-Next, we will continue with https://doc.rust-lang.org/book/ch03-05-control-flow.html
+Next, we will continue with https://doc.rust-lang.org/book/ch04-03-slices.html
