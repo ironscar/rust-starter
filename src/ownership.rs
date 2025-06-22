@@ -34,3 +34,42 @@ fn get_length_mutated_by_reference(s: &mut String) -> usize {
     let length = s.len();
     length
 }
+
+// ------------------------------------------------------------- //
+
+pub fn slices_demo() {
+    println!("slices_demo begins...");
+    let mut s = String::from("hello world");
+    let second_word_slice = find_second_word(&s);
+    // s.clear(); // throws compile error for mutable borrow as it's already immutably borrowed
+    println!("The second word is {}", second_word_slice);
+
+}
+
+fn find_second_word(s: &str) -> &str {
+    let bytes = s.as_bytes();
+
+    // this tuple notation can be used to get index along with element by using iter().enumerate()
+    let mut exists = false;
+    let mut space1: usize = 0;
+    let mut space2: usize = 0;
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            if !exists {
+                space1 = i + 1;
+                exists = true;
+            } else {
+                space2 = i;
+                break;
+            }
+        }
+    }
+    if !exists {
+        return "";
+    }
+    space2 = s.len();
+
+    // string slice returns &str instead of String and contains all characters excluding end index
+    // the (..) range operator can skip the first number if it's 0 and last number if it's the max
+    &s[space1..space2]
+}
