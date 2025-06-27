@@ -49,7 +49,7 @@ fn print_area_with_match (name: &str, shape: &Shapes) {
 fn print_area_with_if (name: &str, shape: &Shapes) {
     let area = shape.area();
     // use let else to return default if value doesn't exist
-    let Some(val) = area else {
+    let Some(_val) = area else {
         println!("{} area not found", name);
         return;
     };

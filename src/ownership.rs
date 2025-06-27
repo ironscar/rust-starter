@@ -70,6 +70,6 @@ fn find_second_word(s: &str) -> &str {
     space2 = s.len();
 
     // string slice returns &str instead of String and contains all characters excluding end index
-    // the (..) range operator can skip the first number if it's 0 and last number if it's the max
+    // the .. range operator can skip the first number if it's 0 and last number if it's the max
     &s[space1..space2]
 }
