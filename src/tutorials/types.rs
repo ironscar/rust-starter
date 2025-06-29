@@ -43,7 +43,7 @@ pub fn basic_type_demo() {
     let my_tuple: (u32, f32, char, bool, [i32;2]) = (5, 4.0, 'a', false, [1,2]);
     println!("tuple print = {}", my_tuple.2);
     // tuple can be deconstructed like so
-    let (v, w, x, y, z) = my_tuple;
+    let (_v, w, _x, _y, _z) = my_tuple;
     // we can also print values directly inside placeholder like this
     println!("tuple deconstruct print = {w}");
 
@@ -179,7 +179,7 @@ fn print_event_sign(event: WebEvent) {
 
 pub fn custom_enum_demo() {
     // To use the enum types directly (we can use * here to specify all)
-    use crate::types::WebEvent::{Click, KeyPress, NamedClick, PageLoad, Paste};
+    use WebEvent::{Click, KeyPress, NamedClick, PageLoad, Paste};
 
     // Enums & types
     print_event_sign(PageLoad);
@@ -190,46 +190,4 @@ pub fn custom_enum_demo() {
 
     // Explicit enum casting (below doesn't seem to work with WebEvent enum)
     println!("Explicit enum: {}", Color::Green as i32);
-}
-
-/*
- * ----------------------------------------------------------------------------------
- * Linked List implementation by enum
- */
-enum List {
-    Node {val: i32, next: Box<List>}, // Box is a smart pointer
-    Tail
-}
-
-// We can attach methods to enum (and structs) using `impl` as below
-impl List {
-    fn new() -> List {
-        List::Tail
-    }
-    fn prepend(self, value: i32) -> List {
-        List::Node {val: value, next: Box::new(self) }
-    }
-    fn len(&self) -> u32 {
-        // self has Type &List and *self has type List
-        match *self {
-            List::Node {val: _, ref next} => 1 + next.len(), // other node case
-            List::Tail => 0 // base tail case
-        }
-    }
-    fn stringify(&self) -> String {
-        match *self {
-            List::Node {val, ref next} => format!("{} -> {}", val, next.stringify()),
-            List::Tail => String::from("END")
-        }
-    }
-
-}
-
-pub fn linked_list_demo() {
-    let mut list = List::new();
-    list = list.prepend(1);
-    list = list.prepend(2);
-    list = list.prepend(3);
-    println!("linked list has length: {}", list.len());
-    println!("linked list is {}", list.stringify());
 }
