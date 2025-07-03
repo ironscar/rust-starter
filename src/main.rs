@@ -1,14 +1,20 @@
-// tutorials & trials module imported
+// tutorials & trials private modules defined
 mod tutorials;
 mod trials;
+
+// use guessing game submodule with absolute path
+use crate::tutorials::guessing_game;
+
+// use printers submodule with relative path
+use tutorials::printers;
 
 /// Library docs for next item: The main function starts everything in Rust
 fn main() {
     // run config
-    let current_tutorial = 7;
+    let current_tutorial = 8;
     let current_trial = 1;
-    // let run_type = "tutorials";
-    let run_type = "trials";
+    let run_type = "tutorials";
+    // let run_type = "trials";
 
     // run actual
     if run_type == "tutorials" {
@@ -22,12 +28,12 @@ fn tutorials(current_tutorial: i32) {
     match current_tutorial {
         0 => {
             // functions from the guessing_game module (0)
-            tutorials::guessing_game::do_guess();
+            guessing_game::do_guess();
         },
         1 => {
             // functions from the print module (1)
-            tutorials::printers::basic_demo();
-            tutorials::printers::complex_demo();
+            printers::basic_demo();
+            printers::complex_demo();
         },
         2 => {
             // functions from the type module (2)
@@ -55,6 +61,14 @@ fn tutorials(current_tutorial: i32) {
             // functions from the enums module (6)
             tutorials::enums::enums_demo();
         },
+        7 => {
+            // call a submodule function (7)
+            trials::linked_list::linked_list_trial();
+        },
+        8 => {
+            // common collections (8)
+            tutorials::collections::vectors_demo();
+        }
         _ => {
             println!("Unknown tutorial");
         }

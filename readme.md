@@ -55,5 +55,6 @@
 - Ownership & Borrowing: `./docs/ownership.md`
 - Structures & Enums: `./docs/struct-enum.md`
 - Packages, Crates & Modules: `./docs/project-structure.md`
+- Common Collections: `./docs/common-collections.md`
 
-Next, we will continue with https://doc.rust-lang.org/book/ch07-02-defining-modules-to-control-scope-and-privacy.html
+Next, we will continue with https://doc.rust-lang.org/book/ch08-00-common-collections.html

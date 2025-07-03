@@ -5,6 +5,8 @@
 - Packages are usually a bundle of crates to a provide a functionality
 - Packages allow to build, test and share crates
 - Packages can contain multiple binary crates and optionally one library crate
+  - when this is the case, its usually that the library has most of the code to be reused
+  - the binary crate merely serves as a quick executable for the library
 - Packages contain the `Cargo.toml` to specify how to build the crates in it
 - To have multiple binary crates, there would be multiple files under `src/bin`
 
@@ -20,7 +22,30 @@
 ### Modules
 
 - Modules can be used to manage multiple files with access specifiers on internals
-- Every internal folder can be a module if we define a `mod.rs` file in it
-- This can then export each internal file as `pub mod <filename>`
-- Finally, the module itself can be imported into `main.rs` as `mod <foldername>`
+- There are two ways to manage this
+  - The old way
+    - every internal folder can be a module if we define a `mod.rs` file in it
+    - this can then declare each internal file as a submodule with `pub mod <filename>`
+  - The new way
+    - have the module file parallel to `main.rs` and declare the submodules there
+    - the submodule files will still be inside a directory with the module name
+- Finally, the module itself can be declared into `main.rs` as `mod <foldername>` and used either directly or with `use`
 - We can use a submodule as `module::submodule::function()`
+- Code within modules are private by default unless prefixed by `pub`
+- We can also import a submodule anywhere within the crate as `use crate::module::submodule` and then directly use submodule within the file
+  - the first part is `crate` because it is the implicit root within a project
+  - but when using external crates, we need to use the name of that crate
+  - paths can also be relative but it's generally recommended to have absolute paths
+  - we can also refer to parent module members using `super::` at the start
+- Submodules by default can see what their parent modules define but not vice versa
+  - Both the submodule declaration and the member inside need to marked as `pub` to be visible to parent module
+- A struct marked with `pub` still has private fields
+  - we can mark each field with `pub` to decide encapsulation
+  - same with functions inside the `impl` scope of the struct
+  - all variants of the enum are automatically public if the enum is but the functions inside `impl` scope can be encapsulated
+- When importing modules, we can do `use as` keywords to give the import a new name in current scope
+  - we can also mark this with `pub` to make the new name accessible outside the module as by default it is private
+- If we are importing multiple things from a single crate
+  - such as `use std::cmp::Ordering;` and `use std::io;`
+  - we can define this as `use std::{cmp::Ordering, io};` to simplify
+  - we can also use `std::*` to import every public item within the module to scope
