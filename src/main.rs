@@ -12,9 +12,9 @@ use tutorials::printers;
 fn main() {
     // run config
     let current_tutorial = 8;
-    let current_trial = 1;
-    let run_type = "tutorials";
-    // let run_type = "trials";
+    let current_trial = 2;
+    // let run_type = "tutorials";
+    let run_type = "trials";
 
     // run actual
     if run_type == "tutorials" {
@@ -80,6 +80,14 @@ fn trials(current_trial: i32) {
         1 => {
             // finally managed to do a linked list implementation somewhat on my own
             trials::linked_list::linked_list_trial();
+        },
+        2 => {
+            // some basic programming problems in Rust
+            trials::basic_problems::basic_problem_1();
+            trials::basic_problems::basic_problem_2();
+            trials::basic_problems::basic_problem_3();
+            trials::basic_problems::basic_problem_4();
+            trials::basic_problems::basic_problem_5();
         },
         _ => {
             println!("Unknown trial");
