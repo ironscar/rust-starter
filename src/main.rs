@@ -13,8 +13,8 @@ fn main() {
     // run config
     let current_tutorial = 8;
     let current_trial = 2;
-    // let run_type = "tutorials";
-    let run_type = "trials";
+    let run_type = "tutorials";
+    // let run_type = "trials";
 
     // run actual
     if run_type == "tutorials" {
@@ -68,6 +68,8 @@ fn tutorials(current_tutorial: i32) {
         8 => {
             // common collections (8)
             tutorials::collections::vectors_demo();
+            tutorials::collections::strings_demo();
+            tutorials::collections::hashmap_demo();
         }
         _ => {
             println!("Unknown tutorial");

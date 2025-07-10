@@ -57,4 +57,4 @@
 - Packages, Crates & Modules: `./docs/project-structure.md`
 - Common Collections: `./docs/common-collections.md`
 
-Next, we will continue with https://doc.rust-lang.org/book/ch08-00-common-collections.html
+Next, we will continue with https://doc.rust-lang.org/book/ch08-03-hash-maps.html
