@@ -11,7 +11,7 @@ use tutorials::printers;
 /// Library docs for next item: The main function starts everything in Rust
 fn main() {
     // run config
-    let current_tutorial = 8;
+    let current_tutorial = 9;
     let current_trial = 2;
     let run_type = "tutorials";
     // let run_type = "trials";
@@ -73,7 +73,12 @@ fn tutorials(current_tutorial: i32) {
             tutorials::collections::collections_exercises_1();
             tutorials::collections::collections_exercises_2();
             tutorials::collections::collections_exercises_3();
-        }
+        },
+        9 => {
+            // error handling (9)
+            // tutorials::error_handling::panic_demo();
+            tutorials::error_handling::recoverable_errors_demo();
+        },
         _ => {
             println!("Unknown tutorial");
         }

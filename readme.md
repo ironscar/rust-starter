@@ -56,5 +56,6 @@
 - Structures & Enums: `./docs/struct-enum.md`
 - Packages, Crates & Modules: `./docs/project-structure.md`
 - Common Collections: `./docs/common-collections.md`
+- Error Handling: `./docs/error-handling.md`
 
-Next, we will continue with https://doc.rust-lang.org/book/ch09-00-error-handling.html
+Next, we will continue with https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html

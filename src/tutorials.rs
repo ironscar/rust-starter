@@ -7,3 +7,4 @@ pub mod printers;
 pub mod structs;
 pub mod types;
 pub mod collections;
+pub mod error_handling;
