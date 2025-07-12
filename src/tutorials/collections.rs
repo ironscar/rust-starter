@@ -224,5 +224,5 @@ fn get_department(ppl_map: &HashMap<String, String>, dept: &str) {
             ppl_list.push(String::from(k));
         }
     });
-    println!("ppl_list in {} = {:?}", dept, ppl_list);
+    println!("Result 3: ppl_list in {} = {:?}", dept, ppl_list);
 }
