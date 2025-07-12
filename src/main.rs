@@ -98,6 +98,7 @@ fn trials(current_trial: i32) {
             trials::basic_problems::basic_problem_3();
             trials::basic_problems::basic_problem_4();
             trials::basic_problems::basic_problem_5();
+            trials::basic_problems::basic_problem_6();
         },
         _ => {
             println!("Unknown trial");

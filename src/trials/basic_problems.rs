@@ -166,3 +166,39 @@ pub fn basic_problem_5() {
     }
     println!("xres deduplicated = {:?}", xres);
 }
+
+// valid paranthesis
+pub fn basic_problem_6() {
+    println!("basic problem 6 - Valid paranthesis");
+
+    let str = String::from("((){}[{})]){}");
+    let chars: Vec<char> = str.chars().collect();
+    let mut new_chars: Vec<char> = Vec::new();
+    let mut result = true;
+
+    for c in chars {
+        if c == '(' || c == '{' || c == '[' {
+            new_chars.push(c);
+        } else if c == ')' || c == '}' || c == ']' {
+            if new_chars.len() == 0 {
+               result = false;
+               break;
+            }
+            let last_char = new_chars.get(new_chars.len() - 1).unwrap();
+            if (*last_char == '(' && c == ')') ||
+                (*last_char == '{' && c == '}') ||
+                (*last_char == '[' && c == ']')
+            {
+                new_chars.pop();
+            } else {
+                new_chars.push(c);
+            }
+        }
+    }
+
+    if new_chars.is_empty() {
+        println!("Valid paranthesis");
+    } else {
+        println!("Invalid paranthesis");
+    }
+}
