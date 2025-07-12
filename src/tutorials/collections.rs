@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use std::fmt;
 
 pub fn vectors_demo() {
@@ -101,4 +102,127 @@ pub fn strings_demo() {
 
 pub fn hashmap_demo() {
     println!("hashmap demo begins here...");
+
+    // create a new map and populate it
+    let mut scores: HashMap<&str, i32> = HashMap::new();
+    scores.insert("apple", 10);
+    scores.insert("ball", 20);
+    // copied is used to return Option<i32> instead of Option<&i32>
+    println!("apple = {}", scores.get("apple").copied().unwrap_or(0));
+
+    // adding key only if absent
+    scores.entry("ball").or_insert(30);
+    scores.entry("cat").or_insert(30);
+    println!("ball = {}", scores.get("ball").copied().unwrap_or(0));
+    println!("cat = {}", scores.get("cat").copied().unwrap_or(0));
+
+    // updating value of key based on current value
+    let curr_val = scores.entry("cat").or_insert(0);
+    *curr_val += 1;
+    let curr_val = scores.entry("dog").or_insert(0);
+    *curr_val += 1;
+    println!("cat = {}", scores.get("cat").copied().unwrap_or(0));
+    println!("dog = {}", scores.get("dog").copied().unwrap_or(0));
+}
+
+/*--------------------------------------------------------------------------*/
+
+/*
+ * Given a list of integers, find median and mode
+ */
+pub fn collections_exercises_1() {
+    println!("collections exercises begins here...");
+    let mut v = vec![1, 20, 3, 5, 45, 23, 5, 98, 7];
+    v.sort();
+    let median = v.get(v.len() / 2).unwrap();
+
+    let mut mode_map: HashMap<i32, i32> = HashMap::new();
+    let mut max_val = 0;
+    let mut max_elem = 0;
+    for val in &v {
+        let count = mode_map.entry(*val).or_insert(0);
+        *count += 1;
+        if *count > max_val {
+            max_val = *count;
+            max_elem = *val;
+        }
+    }
+
+    println!("Result 1: mode = {max_elem} and median = {median}");
+}
+
+/*
+ * Given a string
+ * if it starts with consonant, take it to end of word and add ay to end of word
+ * if it starts with consonant, add hay to end of word
+ */
+pub fn collections_exercises_2() {
+    let str = String::from("There is a brown fox");
+    let mut words_iter = str.split_whitespace();
+    let mut word = words_iter.next();
+    let mut new_str = String::new();
+
+    loop {
+        let actual_word = word.unwrap();
+        let chars: Vec<char> = actual_word.chars().collect();
+        let mut new_chars = chars.clone();
+
+        let first_char = chars.first().unwrap();
+        if *first_char == 'a' || *first_char == 'e' || *first_char == 'i' ||
+            *first_char == 'o' || *first_char == 'u'
+        {
+            new_chars.push('h');
+            new_chars.push('a');
+            new_chars.push('y');
+        } else {
+            new_chars.remove(0);
+            new_chars.push(*first_char);
+            new_chars.push('a');
+            new_chars.push('y');
+        }
+        let new_word: String = new_chars.iter().collect();
+        new_str.push_str(&new_word);
+
+        word = words_iter.next();
+        if word != None {
+            new_str.push(' ');
+        } else {
+            break;
+        }
+    }
+
+    println!("Result 2: = \"{new_str}\"");
+}
+
+/*
+ * allow adding people to departments using a function
+ * allow department changes using same function
+ * get all people within a specific department using a function
+ * one person can be only in one department at a time
+ */
+pub fn collections_exercises_3() {
+    let mut ppl_map: HashMap<String, String> = HashMap::new();
+
+    add_person_to_dept(&mut ppl_map, "Adam", "SMS");
+    add_person_to_dept(&mut ppl_map, "Eve", "SCS");
+    add_person_to_dept(&mut ppl_map, "Jacob", "FPS");
+    add_person_to_dept(&mut ppl_map, "Adam", "SCS");
+
+    get_department(&ppl_map, "SMS");
+    get_department(&ppl_map, "SCS");
+    get_department(&ppl_map, "FPS");
+}
+
+fn add_person_to_dept(ppl_map: &mut HashMap<String, String>, person_name: &str, dept: &str) {
+    ppl_map.insert(String::from(person_name), String::from(dept));
+}
+
+fn get_department(ppl_map: &HashMap<String, String>, dept: &str) {
+    let mut ppl_list: Vec<String> = Vec::new();
+    ppl_map.iter().for_each(|(k, v)| {
+        if *v == dept {
+            ppl_list.push(String::from(k));
+        }
+    });
+    println!("ppl_list in {} = {:?}", dept, ppl_list);
 }

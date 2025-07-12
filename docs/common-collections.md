@@ -37,5 +37,11 @@
 ## HashMap
 
 - Allows storing a collection of keys and corresponding values
+- All keys should be of same type and all values should be of same type
+  - it is technically possible to have an enum type for the keys and values though
+- Using variables as args in `insert` moves their value away unless they implement the Copy trait
+- By default, the hashing function used is `SipHash`
+  - it is slower but more secure
+  - we can switch to faster hash algorithms by changing the `hasher`
 
 ---

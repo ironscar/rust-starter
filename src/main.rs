@@ -70,6 +70,9 @@ fn tutorials(current_tutorial: i32) {
             tutorials::collections::vectors_demo();
             tutorials::collections::strings_demo();
             tutorials::collections::hashmap_demo();
+            tutorials::collections::collections_exercises_1();
+            tutorials::collections::collections_exercises_2();
+            tutorials::collections::collections_exercises_3();
         }
         _ => {
             println!("Unknown tutorial");
