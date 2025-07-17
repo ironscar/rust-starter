@@ -6,6 +6,8 @@
 ## Vectors
 
 - A vector allows you to store variable number of values of same type as a list
+- Looping through a vector directly moves the vector rendering it non-existent after the loop
+  - we can however take a reference to the vector itself while looping
 - Since we cannot have a mutable and immutable reference at the same time
   - we cannot add to a vector while also having a reference to an element of the vector
   - this is done because the entire vector maybe copied to a new location if there isn't enough memory for the new element where it is currently stored

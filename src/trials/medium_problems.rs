@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 /*
     PROBLEM: Valid Subsequences II
-    SOLUTION: METHOD I (Brute force complexity = 2^n )
+    SOLUTION: METHOD I (Brute force complexity = 2^n)
     SUBMISSION: Failed due to memory limit
 
     for each element, find the value of the next elements sum mod k and push into 2-part list
@@ -16,7 +16,7 @@ pub fn medium_problem_1a() {
 
     // inputs
     let nums = vec![4,5,10,2,4,9];
-    let k = 1;
+    let k = 2;
 
     // definitions
     #[derive(Debug)]
