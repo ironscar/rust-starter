@@ -130,3 +130,19 @@ pub fn medium_problem_1a() {
     }
     println!("Brute force complexity count = {} for size = {}", complexity_count, nums.len());
 }
+
+/*
+    PROBLEM: Valid Subsequences II
+    SOLUTION: METHOD II (Dynamic Programming)
+
+    For each initial pair, send the rest of the array from last index and sum % k in DP function
+    add the lengths of initial pair and result from DP function
+    save length for each index and sum % k value in the DP function for reuse
+*/
+pub fn medium_problem_1b() {
+    println!("medium problem 1 (Dynamic programming) - Valid subsequence II");
+
+    // inputs
+    let nums = vec![4,5,10,2,4,9];
+    let k = 2;
+}
