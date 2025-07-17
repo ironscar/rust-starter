@@ -12,9 +12,9 @@ use tutorials::printers;
 fn main() {
     // run config
     let current_tutorial = 9;
-    let current_trial = 2;
-    let run_type = "tutorials";
-    // let run_type = "trials";
+    let current_trial = 3;
+    // let run_type = "tutorials";
+    let run_type = "trials";
 
     // run actual
     if run_type == "tutorials" {
@@ -100,6 +100,10 @@ fn trials(current_trial: i32) {
             trials::basic_problems::basic_problem_5();
             trials::basic_problems::basic_problem_6();
         },
+        3 => {
+            // some medium programming problems in Rust
+            trials::medium_problems::medium_problem_1a();
+        }
         _ => {
             println!("Unknown trial");
         }
