@@ -1,5 +1,5 @@
-use std::collections::HashMap;
-
+use std::collections::{HashMap, HashSet};
+use std::io::ErrorKind::WouldBlock;
 /*
     PROBLEM: Valid Subsequences II
     SOLUTION: METHOD I (Brute force complexity = 2^n)
@@ -135,9 +135,53 @@ pub fn medium_problem_1a() {
     PROBLEM: Valid Subsequences II
     SOLUTION: METHOD II (Dynamic Programming)
 
-    For each initial pair, send the rest of the array from last index and sum % k in DP function
-    add the lengths of initial pair and result from DP function
-    save length for each index and sum % k value in the DP function for reuse
+    start with elementary case of last pair
+    take [4,9] and k = 2 => 1, store in a map with key = 1
+    value with internal map with key as index and set value as length 2 => [4 -> 2]
+    ----
+    add next element before elementary case to this
+    take 2 and combine with 4 and 9 separately to see if we get 1
+    [2,4], k = 2 => 0 => 0 -> [3 -> 2]
+        - if external map doesn't have key as result, create a new entry with length 2
+    [2,9], k = 2 => 1 => 1 -> [3 -> 2, 4 -> 2]
+        - if index of 2nd element not in internal map, set length 2 with index of 1st element
+    ----
+    add next element before elementary case to this
+    take 10 and combine with each element that comes after it
+    [10,2], k = 2 => 0 => 0 -> [3 -> 3]
+        - if index of 2nd element in internal map, add 1 to corresponding value as length
+    [10,4], k = 2 => 0
+        - skip because we already have this result and this is guaranteed to be equal or shorter
+    [10,9], k = 2 => 1 => 1 -> [2 -> 2, 3 -> 2, 4 -> 2]
+        - if index of 2nd element not in internal map, set length 2 with index of 1st element
+    ----
+    add next element before elementary case to this
+    take 5 and combine with each element that comes after it
+    [5,10], k = 2 => 1 => 1 -> [2 -> 3, 3 -> 2, 4 -> 2]
+        - if index of 2nd element in internal map, add 1 to corresponding value as length
+    [5,2], k = 2 => 1
+        - skip because we already have this result and this is guaranteed to be equal or shorter
+    [5,4], k = 2 => 1
+        - skip because we already have this result and this is guaranteed to be equal or shorter
+    [5,9], k = 2 => 0 => 0 -> [3 -> 3, 1 -> 2]
+        - if index of 2nd element not in internal map, set length 2 with index of 1st element
+    ----
+    add next element before elementary case to this
+    take 4 and combine with each element that comes after it
+    [4,5], k = 2 => 1 => 1 -> [2 -> 4, 3 -> 2, 4 -> 2]
+        - if index of 2nd element in internal map, add 1 to corresponding value as length
+    [4,10], k = 2 => 0 => 0 -> [3 -> 4, 1 -> 2]
+    [4,2], k = 2 => 0
+        - skip because we already have this result and this is guaranteed to be equal or shorter
+    [4,4], k = 2 => 0
+        - skip because we already have this result and this is guaranteed to be equal or shorter
+    [4,9], k = 2 => 1
+        - skip because we already have this result and this is guaranteed to be equal or shorter
+    ----
+    once all elements are done, find the largest internal map value which will give length
+    ----
+    if k = 1000 and maxlength = 1000
+    external map and internal map can have 1000 distinct keys => 10^6 max distinct values
 */
 pub fn medium_problem_1b() {
     println!("medium problem 1 (Dynamic programming) - Valid subsequence II");
@@ -145,4 +189,85 @@ pub fn medium_problem_1b() {
     // inputs
     let nums = vec![4,5,10,2,4,9];
     let k = 2;
+
+    // initializations
+    let mut ext_index = nums.len() - 2;
+    let mut extmap: HashMap<i32, HashMap<usize, usize>> = HashMap::new();
+    let mut max_len = 2;
+    let mut complexity_count = 0;
+
+    // implementation
+    loop {
+        let mut int_index = ext_index + 1;
+        let mut used_vals: HashSet<i32> = HashSet::new();
+
+        loop {
+            let res = (nums[ext_index] + nums[int_index]) % k;
+
+            // skip if we already have this result and this is guaranteed to be equal or shorter
+            if !used_vals.contains(&res) {
+                used_vals.insert(res);
+                complexity_count += 1;
+
+                // insert into data structure
+                if extmap.contains_key(&res) {
+                    let mut intmap = extmap.get_mut(&res).unwrap();
+                    if intmap.contains_key(&int_index) {
+                        // if index of 2nd element in internal map, add 1 to corresponding value as length
+                        let curr_length = intmap.remove(&int_index).unwrap();
+                        // TODO: check if removal will cause issues or not
+                        intmap.insert(ext_index, curr_length);
+                        if curr_length > max_len {
+                            max_len = curr_length;
+                        }
+                    } else {
+                        // if index of 2nd element not in internal map, set length 2 with index of 1st element
+                        intmap.insert(ext_index, 2);
+                    }
+                    // TODO: see if we need to set this back to extmap for changes to show
+                } else {
+                    // if external map doesn't have key as result, create a new entry with length 2
+                    let mut intmap: HashMap<usize, usize> = HashMap::new();
+                    intmap.insert(ext_index, 2);
+                    extmap.insert(res, intmap);
+                }
+            }
+
+            // increment int_index
+            int_index += 1;
+            if int_index == nums.len() {
+                break;
+            }
+        }
+
+        // decrement ext_index
+        if ext_index == 0 {
+            break;
+        }
+        ext_index -= 1;
+    }
+
+    println!("Maps = {:?}", extmap);
+    println!("Max length = {}", max_len);
+    println!("Comlexity = {}", complexity_count);
+}
+
+// trial for updating internal map inside external map
+pub fn map_trial() {
+    let mut extmap: HashMap<i32, HashMap<usize, usize>> = HashMap::new();
+    int_add1(&mut extmap);
+    int_add2(&mut extmap);
+    println!("Extmap = {:?}", extmap);
+}
+
+fn int_add2(extmap: &mut HashMap<i32, HashMap<usize, usize>>) {
+    let mut intmap2 = extmap.get(&1).unwrap().clone();
+    intmap2.insert(2, 2);
+    extmap.insert(1, intmap2);
+}
+
+fn int_add1(extmap: &mut HashMap<i32, HashMap<usize, usize>>) {
+    let mut intmap: HashMap<usize, usize> = HashMap::new();
+    intmap.insert(1, 1);
+    extmap.insert(1, intmap);
 }
