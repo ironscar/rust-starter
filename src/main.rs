@@ -102,8 +102,7 @@ fn trials(current_trial: i32) {
         },
         3 => {
             // some medium programming problems in Rust
-            // trials::medium_problems::medium_problem_1a();
-            trials::medium_problems::medium_problem_1b();
+            trials::medium_problems::medium_problem_1();
         }
         _ => {
             println!("Unknown trial");
