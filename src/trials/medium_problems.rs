@@ -1,5 +1,5 @@
 use std::collections::{HashMap, HashSet};
-use std::io::ErrorKind::WouldBlock;
+use std::collections::hash_map;
 /*
     PROBLEM: Valid Subsequences II
     SOLUTION: METHOD I (Brute force complexity = 2^n)
@@ -210,26 +210,23 @@ pub fn medium_problem_1b() {
                 complexity_count += 1;
 
                 // insert into data structure
-                if extmap.contains_key(&res) {
-                    let mut intmap = extmap.get_mut(&res).unwrap();
-                    if intmap.contains_key(&int_index) {
+                if let Some(intmap) = extmap.get_mut(&res) {
+                    if let Some(curr_len) = intmap.get(&int_index) {
                         // if index of 2nd element in internal map, add 1 to corresponding value as length
-                        let curr_length = intmap.remove(&int_index).unwrap();
-                        // TODO: check if removal will cause issues or not
-                        intmap.insert(ext_index, curr_length);
-                        if curr_length > max_len {
-                            max_len = curr_length;
+                        let actual_len = (*curr_len).clone() + 1;
+                        intmap.insert(ext_index, actual_len);
+                        if actual_len > max_len {
+                            max_len = actual_len;
                         }
                     } else {
                         // if index of 2nd element not in internal map, set length 2 with index of 1st element
                         intmap.insert(ext_index, 2);
                     }
-                    // TODO: see if we need to set this back to extmap for changes to show
                 } else {
                     // if external map doesn't have key as result, create a new entry with length 2
-                    let mut intmap: HashMap<usize, usize> = HashMap::new();
-                    intmap.insert(ext_index, 2);
-                    extmap.insert(res, intmap);
+                    let mut int_map1 = HashMap::new();
+                    int_map1.insert(ext_index, 2);
+                    extmap.insert(res, int_map1);
                 }
             }
 
