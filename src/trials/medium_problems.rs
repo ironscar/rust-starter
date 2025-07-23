@@ -1,10 +1,11 @@
-use std::collections::{HashMap, HashSet};
+use std::collections::HashMap;
 
 /*
     PROBLEM: Valid Subsequences II
     SOLUTION: METHOD II (Dynamic Programming)
-    LEETCODE STATS: Runtime = 471ms | Memory = 5.39MB
+    LEETCODE STATS: Runtime = 286ms | Memory = 5.49MB
 
+    METHODOLOGY
     - start with second-last element and then repeat below for every element before it
     - let the starting element be 1st element and the next element in each iteration be 2nd element
     - create a map with keys as result and value as an internal map
@@ -15,6 +16,10 @@ use std::collections::{HashMap, HashSet};
     - else if index of 2nd element in internal map, add 1 to corresponding value as length
     - keep updating value of a max variable whenever length gets incremented
     - return max as the final result
+
+    OPTIMIZATIONS
+    - Using u16 instead of usize or i32 (memory: 13MB -> 5.3MB, runtime: 0.7s -> 0.45s)
+    - Using a fixed-size array instead of HashSet (memory: 5.3MB -> 5.5MB, runtime: 0.45s -> 0.3s)
 */
 pub fn medium_problem_1() {
     println!("medium problem 1 (Dynamic programming) - Valid subsequence II");
@@ -30,14 +35,14 @@ pub fn medium_problem_1() {
 
     // implementation
     for ext_index in (0..(nums.len() - 1) as u16).rev() {
-        let mut used_vals: HashSet<u16> = HashSet::new();
+        let mut used_vals = [0u16;1000];
 
         for int_index in (ext_index + 1)..nums.len() as u16 {
             let res = ((nums[ext_index as usize] + nums[int_index as usize]) % k) as u16;
 
             // skip if we already have this result and this is guaranteed to be equal or shorter
-            if !used_vals.contains(&res) {
-                used_vals.insert(res);
+            if used_vals[res as usize] == 0 {
+                used_vals[res as usize] = 1;
                 complexity_count += 1;
 
                 // insert into data structure
