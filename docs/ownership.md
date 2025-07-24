@@ -37,6 +37,7 @@
     - we can have only one mutable reference and no other references (mutable or otherwise) are allowed
     - we can however have multiple immutable references at the same time
     - we cannot create a mutable reference if there exists an immutable reference already
+    - immutably borrowing a single entry of a mutably borrowed HashMap is possible
 - We also cannot return the reference from a function if the original value was created in the function
     - this is because the original value ceases to exist once the function ends and so it is a null reference
     - this is often called dangling pointer and Rust doesn't allow it
