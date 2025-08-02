@@ -12,7 +12,7 @@ use tutorials::printers;
 fn main() {
     // run config
     let current_tutorial = 9;
-    let current_trial = 3;
+    let current_trial = 1;
     // let run_type = "tutorials";
     let run_type = "trials";
 
