@@ -32,6 +32,7 @@
   - includes metadata and dependencies
 - It also generates a basic `main.rs` file with a `print` statement (where we will write our code)
 - Running `cargo run` compiles and runs the program
+- If workspaces, run `cargo run --bin <package_name>`
 
 ### Adding dependencies
 
@@ -52,10 +53,12 @@
 
 ## Additional Docs
 
-- Ownership & Borrowing: `./docs/ownership.md`
-- Structures & Enums: `./docs/struct-enum.md`
-- Packages, Crates & Modules: `./docs/project-structure.md`
-- Common Collections: `./docs/common-collections.md`
-- Error Handling: `./docs/error-handling.md`
+- Ownership & Borrowing: `./rust_tutorials/docs/ownership.md`
+- Structures & Enums: `./rust_tutorials/docs/struct-enum.md`
+- Packages, Crates & Modules: `./rust_tutorials/docs/project-structure.md`
+- Common Collections: `./rust_tutorials/docs/common-collections.md`
+- Error Handling: `./rust_tutorials/docs/error-handling.md`
+- Trials Docs: `./rust_trials/docs/*`
+- AutoML Docs: `./automl_factory/docs/*`
 
 Next, we will continue with https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html

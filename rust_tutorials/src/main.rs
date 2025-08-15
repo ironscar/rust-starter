@@ -1,7 +1,5 @@
-// tutorials & trials private modules defined
+// private modules defined
 mod tutorials;
-mod trials;
-mod automl_factory;
 
 // use guessing game submodule with absolute path
 use crate::tutorials::guessing_game;
@@ -9,28 +7,9 @@ use crate::tutorials::guessing_game;
 // use printers submodule with relative path
 use tutorials::printers;
 
-/// Library docs for next item: The main function starts everything in Rust
 fn main() {
-    // run config
-    let current_tutorial = 9;
-    let current_trial = 1;
-    let current_automl_impl = 1;
-    // let run_type = "tutorials";
-    // let run_type = "trials";
-    let run_type = "automl";
-
-    // run actual
-    if run_type == "tutorials" {
-        tutorials(current_tutorial);
-    } else if run_type == "trials" {
-        trials(current_trial);
-    } else if run_type == "automl" {
-        automl_factory_impls(current_automl_impl);
-    }
-}
-
-fn tutorials(current_tutorial: i32) {
-    match current_tutorial {
+    let current_tutorial_index = 9;
+    match current_tutorial_index {
         1 => {
             // functions from the guessing_game module (1)
             guessing_game::do_guess();
@@ -84,42 +63,6 @@ fn tutorials(current_tutorial: i32) {
         },
         _ => {
             println!("Unknown tutorial");
-        }
-    };
-}
-
-fn trials(current_trial: i32) {
-    match current_trial {
-        1 => {
-            // finally managed to do a linked list implementation somewhat on my own
-            trials::linked_list::linked_list_trial();
-        },
-        2 => {
-            // some basic programming problems in Rust
-            trials::basic_problems::basic_problem_1();
-            trials::basic_problems::basic_problem_2();
-            trials::basic_problems::basic_problem_3();
-            trials::basic_problems::basic_problem_4();
-            trials::basic_problems::basic_problem_5();
-            trials::basic_problems::basic_problem_6();
-        },
-        3 => {
-            // some medium programming problems in Rust
-            trials::medium_problems::medium_problem_1();
-        },
-        _ => {
-            println!("Unknown trial");
-        }
-    };
-}
-
-fn automl_factory_impls(current_automl_impl: i32) {
-    match current_automl_impl {
-        1 => {
-            automl_factory::linear_regression::linear_regression_demo();
-        },
-        _ => {
-            println!("Unknown automl implementation");
         }
     };
 }

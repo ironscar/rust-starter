@@ -1,4 +1,15 @@
-## Packages / Crates / Modules
+## Workspaces / Packages / Crates / Modules
+
+### Workspaces
+
+- Workspaces in Cargo are a collection of crates in a single project
+- There can be any number of binary or library crates in a workspace
+- Workspaces require a `Cargo.toml` at root with the workspaces tag and the corresponding members by package name
+  - we can also specify resolver as `2` which is the new way of resolving packages, else it shows warnings on build 
+- Each directory in this workspace can be these individual packages, each with its own `Cargo.toml` with package name
+- Creating workspaces sometimes makes the file name in explorer view look red (error)
+  - recreating the files with the same content seems to fix it
+- To run a specific crate, run `cargo run --bin <package_name>`
 
 ### Packages
 
