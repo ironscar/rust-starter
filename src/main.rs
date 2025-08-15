@@ -13,8 +13,8 @@ fn main() {
     // run config
     let current_tutorial = 9;
     let current_trial = 1;
-    // let run_type = "tutorials";
-    let run_type = "trials";
+    let run_type = "tutorials";
+    // let run_type = "trials";
 
     // run actual
     if run_type == "tutorials" {
@@ -26,44 +26,40 @@ fn main() {
 
 fn tutorials(current_tutorial: i32) {
     match current_tutorial {
-        0 => {
-            // functions from the guessing_game module (0)
+        1 => {
+            // functions from the guessing_game module (1)
             guessing_game::do_guess();
         },
-        1 => {
-            // functions from the print module (1)
+        2 => {
+            // functions from the print module (2)
             printers::basic_demo();
             printers::complex_demo();
         },
-        2 => {
-            // functions from the type module (2)
+        3 => {
+            // functions from the type module (3)
             tutorials::types::basic_type_demo();
             tutorials::types::custom_structs_demo();
             tutorials::types::custom_enum_demo();
         },
-        3 => {
-            // functions from the control_flow module (3)
+        4 => {
+            // functions from the control_flow module (4)
             tutorials::control_flow::basic_demo();
             println!("0C = {}F", tutorials::control_flow::convert_temp(0, String::from("F")));
             println!("32F = {}C", tutorials::control_flow::convert_temp(32, String::from("C")));
             tutorials::control_flow::fibonacci(10);
         },
-        4 => {
-            // functions from the ownership module (4)
+        5 => {
+            // functions from the ownership module (5)
             tutorials::ownership::ownership_demo();
             tutorials::ownership::slices_demo();
         },
-        5 => {
-            // functions from the structs module (5)
+        6 => {
+            // functions from the structs module (6)
             tutorials::structs::structs_demo();
         },
-        6 => {
-            // functions from the enums module (6)
-            tutorials::enums::enums_demo();
-        },
         7 => {
-            // call a submodule function (7)
-            trials::linked_list::linked_list_trial();
+            // functions from the enums module (7)
+            tutorials::enums::enums_demo();
         },
         8 => {
             // common collections (8)
@@ -76,8 +72,10 @@ fn tutorials(current_tutorial: i32) {
         },
         9 => {
             // error handling (9)
-            // tutorials::error_handling::panic_demo();
-            tutorials::error_handling::recoverable_errors_demo();
+            // tutorials::error_handling::default_panic_demo();
+            // tutorials::error_handling::recoverable_errors_demo_1();
+            // tutorials::error_handling::recoverable_errors_demo_2();
+            tutorials::error_handling::error_propagation_demo();
         },
         _ => {
             println!("Unknown tutorial");

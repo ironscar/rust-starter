@@ -58,4 +58,4 @@
 - Common Collections: `./docs/common-collections.md`
 - Error Handling: `./docs/error-handling.md`
 
-Next, we will continue with https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html
+Next, we will continue with https://doc.rust-lang.org/book/ch09-03-to-panic-or-not-to-panic.html

@@ -53,7 +53,7 @@ enum Cell {
 }
 impl fmt::Display for Cell {
     // create a Display formatter for a multi-type enum vector
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self {
             Cell::Int(i) => write!(f, "{}", i),
             Cell::Text(s) => write!(f, "{}", s)
