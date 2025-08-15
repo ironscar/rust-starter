@@ -32,7 +32,6 @@
   - includes metadata and dependencies
 - It also generates a basic `main.rs` file with a `print` statement (where we will write our code)
 - Running `cargo run` compiles and runs the program
-- If workspaces, run `cargo run --bin <package_name>`
 
 ### Adding dependencies
 

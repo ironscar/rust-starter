@@ -10,6 +10,9 @@
 - Creating workspaces sometimes makes the file name in explorer view look red (error)
   - recreating the files with the same content seems to fix it
 - To run a specific crate, run `cargo run --bin <package_name>`
+- We can also set `default-run = "<package_name>"` in Cargo.toml of specific package
+  - this should be specified only for one
+  - then running `cargo run` runs that specific package
 
 ### Packages
 
