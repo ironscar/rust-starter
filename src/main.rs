@@ -1,6 +1,7 @@
 // tutorials & trials private modules defined
 mod tutorials;
 mod trials;
+mod automl_factory;
 
 // use guessing game submodule with absolute path
 use crate::tutorials::guessing_game;
@@ -13,14 +14,18 @@ fn main() {
     // run config
     let current_tutorial = 9;
     let current_trial = 1;
-    let run_type = "tutorials";
+    let current_automl_impl = 1;
+    // let run_type = "tutorials";
     // let run_type = "trials";
+    let run_type = "automl";
 
     // run actual
     if run_type == "tutorials" {
         tutorials(current_tutorial);
-    } else {
+    } else if run_type == "trials" {
         trials(current_trial);
+    } else if run_type == "automl" {
+        automl_factory_impls(current_automl_impl);
     }
 }
 
@@ -101,9 +106,20 @@ fn trials(current_trial: i32) {
         3 => {
             // some medium programming problems in Rust
             trials::medium_problems::medium_problem_1();
-        }
+        },
         _ => {
             println!("Unknown trial");
+        }
+    };
+}
+
+fn automl_factory_impls(current_automl_impl: i32) {
+    match current_automl_impl {
+        1 => {
+            automl_factory::linear_regression::linear_regression_demo();
+        },
+        _ => {
+            println!("Unknown automl implementation");
         }
     };
 }

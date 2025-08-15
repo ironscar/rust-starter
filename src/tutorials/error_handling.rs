@@ -36,14 +36,23 @@ pub fn recoverable_errors_demo_2() {
 
 pub fn error_propagation_demo() {
     let file_result = File::open("random.rdm");
+
+    // explicitly propagate errors
     match explicit_error_thrower(&file_result) {
-        Ok(s) => println!("{s}"),
-        Err(e) => println!("Error: {:?}", e),
+        Ok(s) => println!("Explicit propagation: {s}"),
+        Err(e) => println!("Explicit propagation error: {:?}", e),
     };
 
+    // implicitly propagate errors
     match implicit_error_thrower(file_result) {
-        Ok(s) => println!("{s}"),
-        Err(e) => println!("Error: {:?}", e),
+        Ok(s) => println!("Implicit propagation: {s}"),
+        Err(e) => println!("Implicit propagation error: {:?}", e),
+    };
+
+    // implicitly resolve options (Compare with None and empty string to understand)
+    match implicit_option_extractor(Some(String::from("Apple"))) {
+        Some(s) => println!("Implicit resolution: {s}"),
+        None => println!("Implicit resolution: None")
     };
 }
 
@@ -59,4 +68,9 @@ fn implicit_error_thrower(file_result: Result<File, Error>) -> Result<String, Er
     // we can directly place a `?` after the Result to propagate the error from there if any
     let file_size = file_result?.metadata()?.len();
     Ok(String::from("Success"))
+}
+
+fn implicit_option_extractor(msg: Option<String>) -> Option<bool> {
+    // can do multiple option extractions as long as Option is returned even with different type
+    Some(msg?.chars().next()?.is_alphabetic())
 }
