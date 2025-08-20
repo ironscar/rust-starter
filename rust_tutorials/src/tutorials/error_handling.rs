@@ -28,8 +28,8 @@ pub fn recoverable_errors_demo_2() {
     let file_result = File::open("random.rdm");
 
     // use direct unwrap to panic (comment out one of these two)
-    let file = file_result.unwrap();
-    // let file = file_result.expect("Failed to open file");
+    let _file = file_result.unwrap();
+    // let _file = file_result.expect("Failed to open file");
 }
 
 // ---------------------------------------------------------------------- //
@@ -59,14 +59,14 @@ pub fn error_propagation_demo() {
 fn explicit_error_thrower(file_result: &Result<File, Error>) -> Result<String, Error> {
     // explicitly match the error and propagate an error with custom message
     match file_result {
-        Ok(f) => Ok(String::from("Success!")),
-        Err(error) => Err(Error::new(ErrorKind::Other, "Failed!"))
+        Ok(_f) => Ok(String::from("Success!")),
+        Err(_error) => Err(Error::new(ErrorKind::Other, "Failed!"))
     }
 }
 
 fn implicit_error_thrower(file_result: Result<File, Error>) -> Result<String, Error> {
     // we can directly place a `?` after the Result to propagate the error from there if any
-    let file_size = file_result?.metadata()?.len();
+    let _file_size = file_result?.metadata()?.len();
     Ok(String::from("Success"))
 }
 

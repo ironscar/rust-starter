@@ -8,7 +8,7 @@ use crate::tutorials::guessing_game;
 use tutorials::printers;
 
 fn main() {
-    let current_tutorial_index = 9;
+    let current_tutorial_index = 10;
     match current_tutorial_index {
         1 => {
             // functions from the guessing_game module (1)
@@ -61,6 +61,10 @@ fn main() {
             // tutorials::error_handling::recoverable_errors_demo_2();
             tutorials::error_handling::error_propagation_demo();
         },
+        10 => {
+            // generics, traits and lifetimes (10)
+            tutorials::generics_traits::generics_demo();
+        }
         _ => {
             println!("Unknown tutorial");
         }

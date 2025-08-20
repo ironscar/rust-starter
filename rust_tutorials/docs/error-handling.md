@@ -1,11 +1,15 @@
 # Error-Handling
 
 - There are no exceptions in Rust, instead there is `panic` and recoverable errors with `Result<T,E>`
+- It's recommended to use `panic` for tests and examples, or when full executable must fail
+  - usually in the event of an unexpected error
+- It's recommended to use `Result` for production libraries so that calling code can have option to panic
+  - usually in the event of a frequently expected error
 
 ## Panic
 
 - By default, panic will print an error message and then unwind the stack to clean up data
-  - This unwinding can sometimes take time and we can choose whether or not to clean up as well
+  - This unwinding can sometimes take time, and we can choose whether to clean up as well
   - we can do this by setting `panic = 'abort'` under `[profile.release]` in `Cargo.toml`
 - Panic will usually show the specific line where the error occurs
 - We need to set an env variable `RUST_BACKTRACE=1` to enable backtrace of the error
@@ -40,5 +44,12 @@
   - To use this on a return type, that type needs to implement the trait `FromResidual`
   - The `?` cannot be used on a reference of the `Result` instance
   - While using with `Option`, function must return `Option` too
+- The main function is special because it is the entry and exit point of an executable
+  - normally the return type is `()` but it can also return `Result<(), E>`
+  - but we can also return `Result<(), Box<dyn Error>>` and return `Ok(())`
+    - the `Box<dyn Error>` is a trait implying any error type
+    - if returning `ok`, then exit value is 0
+    - if returning `Err`, then exit value > 0
+  - the main method can return any type that implements the `Termination` trait
 
 ---

@@ -1,5 +1,3 @@
-use std::f64::consts::PI;
-
 // automatic discriminator (Triangle = 1, Rectangle = 2, Circle = 3)
 #[derive(Debug)]
 enum Shapes {
