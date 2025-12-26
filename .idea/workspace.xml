@@ -4,19 +4,22 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="CargoProjects">
-    <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
+    <cargoProject FILE="$PROJECT_DIR$/Cargo.toml">
+      <package file="$PROJECT_DIR$/automl_factory">
+        <feature name="default" enabled="true" />
+      </package>
+      <package file="$PROJECT_DIR$/rust_trials">
+        <feature name="default" enabled="true" />
+      </package>
+      <package file="$PROJECT_DIR$/rust_tutorials">
+        <feature name="default" enabled="true" />
+      </package>
+    </cargoProject>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ee823a0-e584-4c54-8cf6-f402c0eb1ba6" name="Changes" comment="refactor: add default run package for tuts">
-      <change afterPath="$PROJECT_DIR$/rust_tutorials/docs/generics-traits.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rust_tutorials/src/tutorials/generics_traits.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rust_tutorials/docs/error-handling.md" beforeDir="false" afterPath="$PROJECT_DIR$/rust_tutorials/docs/error-handling.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rust_tutorials/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/rust_tutorials/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rust_tutorials/src/tutorials.rs" beforeDir="false" afterPath="$PROJECT_DIR$/rust_tutorials/src/tutorials.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rust_tutorials/src/tutorials/enums.rs" beforeDir="false" afterPath="$PROJECT_DIR$/rust_tutorials/src/tutorials/enums.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rust_tutorials/src/tutorials/error_handling.rs" beforeDir="false" afterPath="$PROJECT_DIR$/rust_tutorials/src/tutorials/error_handling.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,24 +49,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.rust.reset.selective.auto.import&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;org.rust.cargo.project.model.PROJECT_DISCOVERY&quot;: &quot;true&quot;,
-    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
-    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.rust.reset.selective.auto.import": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/D-Backup/Projects/rust-starter",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "org.rust.cargo.project.model.PROJECT_DISCOVERY": "true",
+    "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
+    "org.rust.first.attach.projects": "true",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Cargo.Test rust-starter">
     <configuration name="Run automl_factory" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="command" value="run --package automl_factory --bin automl_factory" />
@@ -148,6 +154,7 @@
       <updated>1755294256420</updated>
       <workItem from="1755294258218" duration="1424000" />
       <workItem from="1755646798669" duration="4502000" />
+      <workItem from="1766721238855" duration="452000" />
     </task>
     <task id="LOCAL-00001" summary="feat: major project restructuring">
       <option name="closed" value="true" />

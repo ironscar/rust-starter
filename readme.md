@@ -9,6 +9,7 @@
 
 - We began with downloading `Rust Rover` IDE but that doesn't seem to install Rust directly
 - We had to set up manual proxy for TI laptop and do the activation while on VPN
+  - doesn't work if you are off VPN even if proxy is set
 - We can set the `Settings > Keymap` to `VSCode`
 - So we will begin with setup following https://www.rust-lang.org/learn/get-started
 - We can swap between files quickly with `Ctrl+Tab` and `Ctrl+Shift+Tab`
@@ -32,6 +33,7 @@
   - includes metadata and dependencies
 - It also generates a basic `main.rs` file with a `print` statement (where we will write our code)
 - Running `cargo run` compiles and runs the program
+  - need to install Visual Studio Build Tools for this 
 
 ### Adding dependencies
 
