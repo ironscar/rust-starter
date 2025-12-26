@@ -33,7 +33,8 @@
   - includes metadata and dependencies
 - It also generates a basic `main.rs` file with a `print` statement (where we will write our code)
 - Running `cargo run` compiles and runs the program
-  - need to install Visual Studio Build Tools for this 
+  - need to install Visual Studio Build Tools for this from Visual Studio Installer
+  - safer to just get all from `Desktop Development with C++`
 
 ### Adding dependencies
 
