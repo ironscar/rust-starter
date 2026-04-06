@@ -62,6 +62,6 @@
 - Error Handling: `./rust_tutorials/docs/error-handling.md`
 - Generics, Traits & Lifetimes: `./rust_tutorials/generics-traits.md`
 - Trials Docs: `./rust_trials/docs/*`
-- AutoML Docs: `./automl_factory/docs/*`
+- AutoML Docs: `./automl_factory/docs/*` (refer to https://aiengineeringfromscratch.com/ for additional learning items)
 
 Next, we will continue with https://doc.rust-lang.org/book/ch10-01-syntax.html#in-method-definitions
